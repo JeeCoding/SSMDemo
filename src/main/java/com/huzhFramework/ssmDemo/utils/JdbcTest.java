@@ -51,7 +51,7 @@ public class JdbcTest {
         return connection;
     }
 
-    public Connection getConnection2() throws IOException, SQLException {
+    public Connection getConnection2() throws Exception {
 
         Properties properties = new Properties();
 
@@ -59,10 +59,12 @@ public class JdbcTest {
 
         properties.load(inputStream);
 
+        String driver = properties.getProperty("driver");
         String jdbcUrl = properties.getProperty("jdbc.url");
         String user = properties.getProperty("jdbc.username");
         String password = properties.getProperty("jdbc.password");
 
+        Class.forName(driver);
         return DriverManager.getConnection(jdbcUrl, user, password);
     }
 
