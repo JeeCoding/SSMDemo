@@ -9,8 +9,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Date;
 
-import static org.junit.Assert.*;
-
 public class DeptMapperTest {
 
     private ApplicationContext applicationContext;
