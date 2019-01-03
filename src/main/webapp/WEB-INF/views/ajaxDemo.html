@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>ajaxDemo</title>
 </head>
 <body>
 <script>
     function sendDynamicpwd() {
         // $("#verifactionCode_validate_message").text("");
         if (validateMsisdn()) {
-            var msisdn=$("#resetPwdMsisdn").val();
+            var msisdn = $("#resetPwdMsisdn").val();
             $.ajax({
                 url: "$!basePath/findPwd/sendDynamicpwd",
                 type: "post",
@@ -30,4 +32,4 @@
     }
 </script>
 </body>
-</html >
+</html>
