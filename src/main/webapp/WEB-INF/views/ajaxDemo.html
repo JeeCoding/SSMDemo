@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>ajaxDemo</title>
+    <script src="WEB-INF/static/jquery/jquery-3.3.1.min.js"/>
 </head>
 <body>
 <script>
@@ -29,7 +30,22 @@
                 }
             });
         }
-    }
+    };
+
+    $(function () {
+        $.ajax({
+            url: "http://${host}${ctx}/chart/chart/api/charts/97087aa86782f34101678657e47a0188",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                if (data.success) {
+                    console.log(data)
+                } else {
+                    console.log("加载错误")
+                }
+            }
+        });
+    });
 </script>
 </body>
 </html>
