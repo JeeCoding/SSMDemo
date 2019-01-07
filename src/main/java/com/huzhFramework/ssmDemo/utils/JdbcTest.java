@@ -20,7 +20,6 @@ public class JdbcTest {
      * 了解.
      */
     public void testDatabaseMetaData() {
-        
         Connection connection = null;
         ResultSet resultSet = null;
 
