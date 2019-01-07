@@ -21,6 +21,7 @@ public class JdbcTest {
      */
     public void testDatabaseMetaData() {
 
+        //测试
         Connection connection = null;
         ResultSet resultSet = null;
 
