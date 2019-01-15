@@ -1,9 +1,6 @@
-package com.huzhFramework.ssmDemo.utils.HttpClientCraw;
+package com.huzhframework.ssmdemo.utils.httpclientcraw;
 
-import org.apache.http.client.methods.HttpGet;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class HttpClientJsoupCawlTest {
 

@@ -1,4 +1,4 @@
-package com.huzhFramework.ssmDemo.utils.JDBCDemo;
+package com.huzhframework.ssmdemo.utils.jdbcdemo;
 
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -10,7 +10,7 @@ import java.util.*;
 /**
  * java.sql.Connection接口：一个连接
  */
-public class JDBCUtils {
+public class JdbcUtils {
 
     /**
      * 查询一条记录，返回对应的对象
@@ -261,7 +261,7 @@ public class JDBCUtils {
     public static Connection getConnection() throws Exception {
 
         Properties properties = new Properties();
-        InputStream inputStream = JDBCUtils.class.getClassLoader().getResourceAsStream("jdbc.properties");
+        InputStream inputStream = JdbcUtils.class.getClassLoader().getResourceAsStream("jdbc.properties");
         properties.load(inputStream);
 
         String driver = properties.getProperty("jdbc.driver");

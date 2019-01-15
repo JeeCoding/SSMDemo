@@ -1,4 +1,4 @@
-package com.huzhFramework.ssmDemo.utils.HttpClientCraw;
+package com.huzhframework.ssmdemo.utils.httpclientcraw;
 
 import java.io.File;
 import java.io.FileNotFoundException;

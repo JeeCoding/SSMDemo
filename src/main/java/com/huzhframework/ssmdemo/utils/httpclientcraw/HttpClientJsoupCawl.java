@@ -1,4 +1,4 @@
-package com.huzhFramework.ssmDemo.utils.HttpClientCraw;
+package com.huzhframework.ssmdemo.utils.httpclientcraw;
 
 
 import org.apache.http.HttpEntity;

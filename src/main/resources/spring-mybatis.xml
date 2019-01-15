@@ -11,7 +11,7 @@
 
     <!-- 自动扫描 -->
     <!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。  -->
-    <context:component-scan base-package="com.huzhFramework.ssmDemo"><!-- base-package 如果多个，用“,”分隔 -->
+    <context:component-scan base-package="com.huzhframework.ssmdemo"><!-- base-package 如果多个，用“,”分隔 -->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
@@ -38,7 +38,7 @@
     -->
 
     <!-- 配置数据源 -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driver}"/>
         <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.username}"/>
@@ -67,17 +67,17 @@
         <property name="dataSource" ref="dataSource"/>
         <!-- 自动扫描mapping.xml文件 -->
         <property name="mapperLocations" value="classpath:mappings/*Mapper.xml"/>
-        <property name="typeAliasesPackage" value="com.huzhFramework.ssmDemo.entity"/>
+        <property name="typeAliasesPackage" value="com.huzhframework.ssmdemo.entity"/>
     </bean>
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类，这个很重要，缺少了就会注入Dao层失败报错 -->
     <!-- 在spring容器中配置mapper的扫描器产生的动态代理对象在spring的容器中自动注册，bean的id就是mapper类名（首字母小写）-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- 指定扫描包的路径，就是mapper接口的路径，多个包中间以 半角逗号隔开   -->
-        <property name="basePackage" value="com.huzhFramework.ssmDemo.dao"/>
+        <property name="basePackage" value="com.huzhframework.ssmdemo.dao"/>
         <!-- 配置sqlSessionFactoryBeanName -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
-        <!--<property name="annotationClass" value="com.huzhFramework.jeesite.common.persistence.annotation.MyBatisDao"/>-->
+        <!--<property name="annotationClass" value="com.huzhframework.jeesite.common.persistence.annotation.MyBatisDao"/>-->
     </bean>
 </beans>

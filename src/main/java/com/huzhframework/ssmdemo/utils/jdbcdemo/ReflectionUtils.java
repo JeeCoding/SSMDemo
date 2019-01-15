@@ -1,4 +1,4 @@
-package com.huzhFramework.ssmDemo.utils.JDBCDemo;
+package com.huzhframework.ssmdemo.utils.jdbcdemo;
 
 import java.lang.reflect.Field;
 

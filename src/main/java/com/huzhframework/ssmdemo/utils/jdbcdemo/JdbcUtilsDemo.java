@@ -1,4 +1,4 @@
-package com.huzhFramework.ssmDemo.utils.JDBCDemo;
+package com.huzhframework.ssmdemo.utils.jdbcdemo;
 
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -7,7 +7,7 @@ import java.sql.*;
 import java.sql.Date;
 import java.util.*;
 
-public class JDBCUtilsDemo {
+public class JdbcUtilsDemo {
     /**
      * DatabaseMetaData 是描述 数据库 的元数据对象.
      * 可以由 Connection 得到.类似ResultSetMetaData获取数据库信息

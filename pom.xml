@@ -21,8 +21,10 @@
         <!-- log4j日志文件管理包版本 -->
         <slf4j.version>1.6.6</slf4j.version>
         <log4j.version>1.2.12</log4j.version>
-        <!-- HttpClientCraw -->
+        <!-- httpclientcraw -->
         <httpclient.version>4.5.2</httpclient.version>
+        <!-- connection pool -->
+        <druid.version>1.0.18</druid.version>
     </properties>
 
     <dependencies>
@@ -185,11 +187,11 @@
             <artifactId>commons-pool</artifactId>
             <version>1.5.6</version>
         </dependency>
-        <!-- 导入jbcp的jar,用来在spring-mybatis.xml中配置数据库， 如jndi，是主流数据库连接池之一 -->
+        <!-- connection pool -->
         <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>1.4</version>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-beanutils</groupId>
@@ -286,7 +288,7 @@
             <version>1.0.0</version>
         </dependency>
 
-        <!-- HttpClientCraw 包开始 -->
+        <!-- httpclientcraw 包开始 -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
@@ -326,7 +328,7 @@
             <artifactId>phantomjsdriver</artifactId>
             <version>1.4.3</version>
         </dependency>
-        <!--HttpClientCraw 包结束 -->
+        <!--httpclientcraw 包结束 -->
     </dependencies>
 
     <build>
