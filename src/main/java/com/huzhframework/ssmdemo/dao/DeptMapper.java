@@ -1,9 +1,7 @@
 package com.huzhframework.ssmdemo.dao;
 
 import com.huzhframework.ssmdemo.entity.Dept;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface DeptMapper {
     int deleteByPrimaryKey(Integer id);
 

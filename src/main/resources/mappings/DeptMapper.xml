@@ -5,7 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="age" jdbcType="INTEGER" property="age" />
-    <result column="birdate" jdbcType="DATE" property="birdate" />
+    <result column="birdate" jdbcType="TIMESTAMP" property="birdate" />
   </resultMap>
   <sql id="Base_Column_List">
     id, name, age, birdate
@@ -24,7 +24,7 @@
     insert into k_dept (id, name, age, 
       birdate)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
-      #{birdate,jdbcType=DATE})
+      #{birdate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.huzhframework.ssmdemo.entity.Dept">
     insert into k_dept
@@ -53,7 +53,7 @@
         #{age,jdbcType=INTEGER},
       </if>
       <if test="birdate != null">
-        #{birdate,jdbcType=DATE},
+        #{birdate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -67,7 +67,7 @@
         age = #{age,jdbcType=INTEGER},
       </if>
       <if test="birdate != null">
-        birdate = #{birdate,jdbcType=DATE},
+        birdate = #{birdate,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -76,7 +76,7 @@
     update k_dept
     set name = #{name,jdbcType=VARCHAR},
       age = #{age,jdbcType=INTEGER},
-      birdate = #{birdate,jdbcType=DATE}
+      birdate = #{birdate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

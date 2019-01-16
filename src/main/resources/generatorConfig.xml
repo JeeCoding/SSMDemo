@@ -5,8 +5,8 @@
     <!--导入属性配置 -->
     <properties resource="generator.properties"/>
 
-    <classPathEntry
-            location="D:\maven\repo_default\mysql\mysql-connector-java\5.1.29\mysql-connector-java-5.1.29.jar"/>
+    <!--<classPathEntry
+            location="D:\maven\repo_default\mysql\mysql-connector-java\5.1.29\mysql-connector-java-5.1.29.jar"/>-->
     <context id="context1">
         <!-- 注释 -->
         <commentGenerator>
