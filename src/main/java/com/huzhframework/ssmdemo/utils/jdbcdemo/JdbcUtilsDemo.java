@@ -1,5 +1,6 @@
 package com.huzhframework.ssmdemo.utils.jdbcdemo;
 
+import com.alibaba.druid.proxy.DruidDriver;
 import org.apache.commons.beanutils.BeanUtils;
 
 import java.io.InputStream;
@@ -348,7 +349,7 @@ public class JdbcUtilsDemo {
      */
     public Connection driverConnection() throws Exception {
         // 1. 创建一个 Driver 实现类的对象
-        Driver dirver = new com.mysql.jdbc.Driver();
+        Driver dirver = new DruidDriver();
 
         // 2. 准备链接数据库的基本信息：url, user, password
         String url = "jdbc:mysql://localhost:3306/ssm_demo?useUnicode=true&characterEncoding=utf-8";
