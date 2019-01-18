@@ -87,7 +87,7 @@
     <!-- 对静态资源文件的访问， 将无法mapping到Controller的path交给default servlet handler处理 -->
     <mvc:default-servlet-handler />
     <!-- 静态资源映射,也可以放在web-inf下，外部不能直接访问 -->
-    <mvc:resources mapping="/static/**" location="/static/"/>
+    <mvc:resources mapping="/static/**" location="/WEB-INF/static/"/>
 
     <!-- 配置视图解析器，把控制器的逻辑视频映射为真正的视图 -->
     <!-- /WEB-INF/jsp/start.jsp -->
@@ -103,13 +103,15 @@
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
     </mvc:interceptors>
 
-    <!-- 文件上传配置 -->
+    <!-- 上传文件拦截，设置最大上传文件大小   10M=10*1024*1024(B)=10485760 bytes -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!-- 默认编码 -->
-        <property name="defaultEncoding" value="UTF-8"/>
-        <!-- 上传文件大小限制为31M，31*1024*1024 -->
-        <property name="maxUploadSize" value="${web.maxUploadSize}"/>
-        <!-- 内存中的最大值 -->
-        <property name="maxInMemorySize" value="4096"/>
+        <property name="maxUploadSize" value="${web.maxUploadSize}" />
     </bean>
+
+    <!-- 控制器异常处理 -->
+    <bean id="exceptionHandlerExceptionResolver"
+          class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver">
+        <property name="contentNegotiationManager" ref="contentNegotiationManager"/>
+    </bean>
+
 </beans>
