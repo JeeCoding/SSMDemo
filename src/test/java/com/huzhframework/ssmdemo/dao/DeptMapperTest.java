@@ -17,7 +17,7 @@ public class DeptMapperTest {
 
     @Before
     public void setUp() throws Exception {
-        applicationContext = new ClassPathXmlApplicationContext("classpath:spring-mybatis.xml");
+        applicationContext = new ClassPathXmlApplicationContext("classpath:spring-context.xml");
         deptMapper = applicationContext.getBean(DeptMapper.class);
     }
 
