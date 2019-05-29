@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-       xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:util="http://www.springframework.org/schema/util" xmlns:task="http://www.springframework.org/schema/task"
-       xsi:schemaLocation="
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
-		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.1.xsd
-		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.1.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
-		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd
-		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.1.xsd"
-       default-lazy-init="true">
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                        http://www.springframework.org/schema/tx
+                        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <description>Spring Configuration</description>
 
     <!-- 加载配置属性文件 -->
-    <context:property-placeholder ignore-unresolvable="true" location="classpath:jdbc.properties"/>
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:jdbc.properties" />
 
     <!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。  -->
     <context:component-scan base-package="com.huzhframework.ssmdemo"><!-- base-package 如果多个，用“,”分隔 -->
@@ -31,7 +26,7 @@
         <!--配置别名所在的包-->
         <property name="typeAliasesPackage" value="com.huzhframework.ssmdemo.entity"/>
         <!-- 自动扫描mapping.xml文件 -->
-        <property name="mapperLocations" value="classpath:mappings/**Mapper.xml"/>
+        <property name="mapperLocations" value="classpath:mappings/DeptMapper.xml"/>
     </bean>
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类，这个很重要，缺少了就会注入Dao层失败报错 -->
@@ -40,17 +35,10 @@
         <!-- 指定扫描包的路径，就是mapper接口的路径，多个包中间以 半角逗号隔开   -->
         <property name="basePackage" value="com.huzhframework.ssmdemo.dao"/>
         <!-- 配置sqlSessionFactoryBeanName -->
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
         <!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
         <!--<property name="annotationClass" value="com.huzhframework.jeesite.common.persistence.annotation.MyBatisDao"/>-->
     </bean>
-
-    <!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
-    <!--<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-        <property name="basePackage" value="com.thinkgem.jeesite"/>
-        <property name="annotationClass" value="com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao"/>
-    </bean>-->
 
     <!-- 定义事务 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -62,18 +50,12 @@
     <!-- MyBatis end -->
 
     <!-- 配置 JSR303 Bean Validator 定义 -->
-    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 
     <!-- 缓存配置 -->
-    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+    <!--<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
         <property name="configLocation" value="classpath:${ehcache.configFile}" />
-    </bean>
-
-
-    <!-- 计划任务配置，用 @Service @Lazy(false)标注类，用@Scheduled(cron = "0 0 2 * * ?")标注方法 -->
-    <task:executor id="executor" pool-size="10"/>
-    <task:scheduler id="scheduler" pool-size="10"/>
-    <task:annotation-driven scheduler="scheduler" executor="executor" proxy-target-class="true"/>
+    </bean>-->
 
     <!-- 配置数据源 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
@@ -92,22 +74,21 @@
         <property name="maxWait" value="${jdbc.maxWait}"/>
 
         <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
-        <property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}" />
 
         <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
-        <property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}"/>
+        <property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}" />
 
-        <property name="validationQuery" value="${jdbc.validationQuery}"/>
-        <property name="testWhileIdle" value="${jdbc.testWhileIdle}"/>
-        <property name="testOnBorrow" value="${jdbc.testOnBorrow}"/>
-        <property name="testOnReturn" value="${jdbc.testOnReturn}"/>
+        <property name="validationQuery" value="${jdbc.validationQuery}" />
+        <property name="testWhileIdle" value="${jdbc.testWhileIdle}" />
+        <property name="testOnBorrow" value="${jdbc.testOnBorrow}" />
+        <property name="testOnReturn" value="${jdbc.testOnReturn}" />
 
         <!-- 打开PSCache，并且指定每个连接上PSCache的大小  如果用Oracle，则把poolPreparedStatements配置为true，mysql可以配置为false。-->
-        <property name="poolPreparedStatements" value="${jdbc.poolPreparedStatements}"/>
-        <property name="maxPoolPreparedStatementPerConnectionSize"
-                  value="${jdbc.maxPoolPreparedStatementPerConnectionSize}"/>
+        <property name="poolPreparedStatements" value="${jdbc.poolPreparedStatements}" />
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="${jdbc.maxPoolPreparedStatementPerConnectionSize}" />
 
         <!-- 配置监控统计拦截的filters -->
-        <property name="filters" value="${jdbc.filters}"/>
+        <property name="filters" value="${jdbc.filters}" />
     </bean>
 </beans>
