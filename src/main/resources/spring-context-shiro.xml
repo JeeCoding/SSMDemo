@@ -3,10 +3,10 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <description>Shiro Configuration</description>
+    <!--<description>Shiro Configuration</description>
 
-    <!--Shiro配置-->
-    <!-- Shiro的web过滤器 -->
+    &lt;!&ndash;Shiro配置&ndash;&gt;
+    &lt;!&ndash; Shiro的web过滤器 &ndash;&gt;
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <property name="loginUrl" value="${shiro.login.url}"/>
@@ -24,9 +24,9 @@
     </bean>
 
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <!-- Single realm app.  If you have multiple realms, use the 'realms' property instead. -->
+        &lt;!&ndash; Single realm app.  If you have multiple realms, use the 'realms' property instead. &ndash;&gt;
         <property name="realm" ref="userRealm"/>
     </bean>
 
-    <bean id="userRealm" class="UserRealm"></bean>
+    <bean id="userRealm" class="UserRealm"></bean>-->
 </beans>

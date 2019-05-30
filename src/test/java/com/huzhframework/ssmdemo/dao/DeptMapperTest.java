@@ -52,7 +52,7 @@ public class DeptMapperTest {
 
     @Test
     public void selectByPrimaryKey() {
-        Dept dept = deptMapper.selectByPrimaryKey(35);
+        Dept dept = deptMapper.selectByPrimaryKey(1);
         System.out.println(dept.getName());
     }
 

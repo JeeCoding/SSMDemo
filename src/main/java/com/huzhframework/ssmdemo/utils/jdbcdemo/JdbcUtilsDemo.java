@@ -294,7 +294,7 @@ public class JdbcUtilsDemo {
 
         Properties properties = new Properties();
 
-        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("jdbc.properties");
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("resources.properties");
 
         properties.load(inputStream);
 
@@ -320,7 +320,7 @@ public class JdbcUtilsDemo {
         String password = null;
 
         // 读取类路径下的jdbc.properties 文件
-        InputStream in = getClass().getClassLoader().getResourceAsStream("jdbc.properties");
+        InputStream in = getClass().getClassLoader().getResourceAsStream("resources.properties");
         Properties properties = new Properties();
         properties.load(in);
 

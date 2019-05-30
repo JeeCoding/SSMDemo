@@ -17,65 +17,14 @@
     <description>Spring Configuration</description>
 
     <!-- 加载配置属性文件 -->
-    <context:property-placeholder ignore-unresolvable="true" location="classpath:jdbc.properties"/>
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:resources.properties"/>
 
     <!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。  -->
     <context:component-scan base-package="com.huzhframework.ssmdemo"><!-- base-package 如果多个，用“,”分隔 -->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <!-- MyBatis begin -->
-    <!-- 配置会话工厂SqlSessionFactory。mybatis和spring完美整合，不需要mybatis的配置映射文件 -->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <!--配置别名所在的包-->
-        <property name="typeAliasesPackage" value="com.huzhframework.ssmdemo.entity"/>
-        <!-- 自动扫描mapping.xml文件 -->
-        <property name="mapperLocations" value="classpath:mappings/**Mapper.xml"/>
-    </bean>
-
-    <!-- DAO接口所在包名，Spring会自动查找其下的类，这个很重要，缺少了就会注入Dao层失败报错 -->
-    <!-- 在spring容器中配置mapper的扫描器产生的动态代理对象在spring的容器中自动注册，bean的id就是mapper类名（首字母小写）-->
-    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <!-- 指定扫描包的路径，就是mapper接口的路径，多个包中间以 半角逗号隔开   -->
-        <property name="basePackage" value="com.huzhframework.ssmdemo.dao"/>
-        <!-- 配置sqlSessionFactoryBeanName -->
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-        <!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
-        <!--<property name="annotationClass" value="com.huzhframework.jeesite.common.persistence.annotation.MyBatisDao"/>-->
-    </bean>
-
-    <!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
-    <!--<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-        <property name="basePackage" value="com.thinkgem.jeesite"/>
-        <property name="annotationClass" value="com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao"/>
-    </bean>-->
-
-    <!-- 定义事务 -->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
-    </bean>
-
-    <!-- 配置 Annotation 驱动，扫描@Transactional注解的类定义事务  -->
-    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
-    <!-- MyBatis end -->
-
-    <!-- 配置 JSR303 Bean Validator 定义 -->
-    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
-
-    <!-- 缓存配置 -->
-    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-        <property name="configLocation" value="classpath:${ehcache.configFile}" />
-    </bean>
-
-
-    <!-- 计划任务配置，用 @Service @Lazy(false)标注类，用@Scheduled(cron = "0 0 2 * * ?")标注方法 -->
-    <task:executor id="executor" pool-size="10"/>
-    <task:scheduler id="scheduler" pool-size="10"/>
-    <task:annotation-driven scheduler="scheduler" executor="executor" proxy-target-class="true"/>
-
-    <!-- 配置数据源 -->
+    <!-- 配置数据库连接池 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!-- 指定连接数据库的驱动 -->
         <property name="driverClassName" value="${jdbc.driver}"/>
@@ -110,4 +59,42 @@
         <!-- 配置监控统计拦截的filters -->
         <property name="filters" value="${jdbc.filters}"/>
     </bean>
+
+    <!-- 配置mybatis的sqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--配置别名所在的包-->
+        <property name="typeAliasesPackage" value="com.huzhframework.ssmdemo.entity"/>
+        <!-- 自动扫描mapping.xml文件 -->
+        <property name="mapperLocations" value="classpath:mappings/**Mapper.xml"/>
+    </bean>
+
+    <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 指定扫描包的路径，就是mapper接口的路径，多个包中间以 半角逗号隔开   -->
+        <property name="basePackage" value="com.huzhframework.ssmdemo.dao"/>
+        <!-- 配置sqlSessionFactoryBeanName -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
+        <!--<property name="annotationClass" value="com.huzhframework.jeesite.common.persistence.annotation.MyBatisDao"/>-->
+    </bean>
+
+    <!-- 定义事务 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 配置 Annotation 驱动，扫描@Transactional注解的类定义事务  -->
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+    <!-- MyBatis end -->
+
+    <!-- 配置 JSR303 Bean Validator 定义 -->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+
+    <import resource="spring-context-cache.xml"/>
+
+    <!-- 计划任务配置，用 @Service @Lazy(false)标注类，用@Scheduled(cron = "0 0 2 * * ?")标注方法 -->
+    <task:executor id="executor" pool-size="10"/>
+    <task:scheduler id="scheduler" pool-size="10"/>
+    <task:annotation-driven scheduler="scheduler" executor="executor" proxy-target-class="true"/>
 </beans>

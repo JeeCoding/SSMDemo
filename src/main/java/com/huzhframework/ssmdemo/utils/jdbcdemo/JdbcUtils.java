@@ -261,7 +261,7 @@ public class JdbcUtils {
     public static Connection getConnection() throws Exception {
 
         Properties properties = new Properties();
-        InputStream inputStream = JdbcUtils.class.getClassLoader().getResourceAsStream("jdbc.properties");
+        InputStream inputStream = JdbcUtils.class.getClassLoader().getResourceAsStream("resources.properties");
         properties.load(inputStream);
 
         String driver = properties.getProperty("jdbc.driver");
