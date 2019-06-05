@@ -37,6 +37,7 @@
             <map>
                 <!--<entry key="cas" value-ref="casFilter"/>-->
                 <!-- 将自定义 的FormAuthenticationFilter注入shiroFilter中-->
+                <entry key="sysUser" value-ref="sysUserFilter"/>
                 <entry key="authc" value-ref="formAuthenticationFilter"/>
             </map>
         </property>
@@ -46,6 +47,9 @@
             <ref bean="shiroFilterChainDefinitions"/>
         </property>
     </bean>
+
+    <bean id="sysUserFilter" class="com.huzhframework.ssmdemo.sys.shiro.filter.SysUserFilter"/>
+
 
     <!-- CAS认证过滤器 -->
     <!--   <bean id="casFilter" class="org.apache.shiro.cas.CasFilter">
@@ -98,6 +102,7 @@
         <property name="passwordParam" value="password"/>
         <!-- 记住我input的名称 -->
         <property name="rememberMeParam" value="rememberMe"/>
+        <property name="loginUrl" value="/login"/>
     </bean>
 
     <!-- rememberMeManager管理器，写cookie，取出cookie生成用户信息 -->

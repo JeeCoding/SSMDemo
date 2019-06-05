@@ -2,7 +2,6 @@ package com.huzhframework.ssmdemo.sys.shiro;
 
 import com.huzhframework.ssmdemo.dao.UserMapper;
 import com.huzhframework.ssmdemo.entity.User;
-import com.sun.mail.iap.ByteArray;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;

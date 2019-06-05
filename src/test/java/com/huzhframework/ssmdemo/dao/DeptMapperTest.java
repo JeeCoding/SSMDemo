@@ -1,6 +1,7 @@
 package com.huzhframework.ssmdemo.dao;
 
 import com.huzhframework.ssmdemo.entity.Dept;
+import com.huzhframework.ssmdemo.entity.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,20 @@ public class DeptMapperTest {
     private ApplicationContext applicationContext;
     @Autowired
     private DeptMapper deptMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     @Before
     public void setUp() throws Exception {
         applicationContext = new ClassPathXmlApplicationContext("classpath:spring-context.xml");
         deptMapper = applicationContext.getBean(DeptMapper.class);
+        userMapper = applicationContext.getBean(UserMapper.class);
+    }
+
+    @Test
+    public void selectByUsername() {
+        User user = userMapper.selectByUsername("admin");
+        System.out.println(user);
     }
 
     @Test

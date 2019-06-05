@@ -8,6 +8,11 @@ public class LoginController {
 
     @RequestMapping("/login")
     public String login() {
+        return "sys/index/login";
+    }
+
+    @RequestMapping("/")
+    public String index() {
         return "sys/index/index";
     }
 }

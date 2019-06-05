@@ -26,7 +26,9 @@
         <!--配置别名所在的包-->
         <property name="typeAliasesPackage" value="com.huzhframework.ssmdemo.entity"/>
         <!-- 自动扫描mapping.xml文件 -->
-        <property name="mapperLocations" value="classpath:mappings/DeptMapper.xml"/>
+        <property name="mapperLocations" value="classpath:mappings/*Mapper.xml"/>
+        <!--<property name="configLocation" value="classpath:/mybatis-config.xml"></property>-->
+
     </bean>
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类，这个很重要，缺少了就会注入Dao层失败报错 -->

@@ -3,11 +3,15 @@ package com.huzhframework.ssmdemo.entity;
 public class User {
     private Long id;
 
+    private Long organizationId;
+
     private String username;
 
     private String password;
 
     private String salt;
+
+    private String roleIds;
 
     private Boolean locked;
 
@@ -17,6 +21,14 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getOrganizationId() {
+        return organizationId;
+    }
+
+    public void setOrganizationId(Long organizationId) {
+        this.organizationId = organizationId;
     }
 
     public String getUsername() {
@@ -41,6 +53,14 @@ public class User {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    public String getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(String roleIds) {
+        this.roleIds = roleIds;
     }
 
     public Boolean getLocked() {
