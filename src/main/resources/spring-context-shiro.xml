@@ -10,14 +10,14 @@
         <constructor-arg>
             <value>
                 /static/** = anon
-                /userfiles/** = anon
-                /casFailure.jsp = anon
-                /cas = cas
+                <!--/userfiles/** = anon-->
+                <!--/casFailure.jsp = anon-->
+                <!--/cas = cas-->
                 /login = authc
                 /logout = logout
                 /** = user
-                /act/editor/** = user
-                /ReportServer/** = user
+                <!--/act/editor/** = user-->
+                <!--/ReportServer/** = user-->
             </value>
         </constructor-arg>
     </bean>
