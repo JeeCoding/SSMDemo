@@ -11,7 +11,7 @@ public class LoginController {
         return "sys/index/login";
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/index")
     public String index() {
         return "sys/index/index";
     }
