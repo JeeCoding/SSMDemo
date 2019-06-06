@@ -33,9 +33,11 @@ public class UserRealm extends AuthorizingRealm {
 
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         Set<String> roles = new HashSet<String>();
-        Set<String> Permissions = new HashSet<String>();
+        Set<String> permissions = new HashSet<String>();
+        roles.add("admin");
+        permissions.add("11,21,31,41");
         authorizationInfo.setRoles(roles);
-        authorizationInfo.setStringPermissions(Permissions);
+        authorizationInfo.setStringPermissions(permissions);
         return authorizationInfo;
     }
 
