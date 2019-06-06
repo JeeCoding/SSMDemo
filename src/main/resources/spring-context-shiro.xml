@@ -15,6 +15,7 @@
                 <!--/cas = cas-->
                 /login = authc
                 /logout = logout
+                <!--/index = anon-->
                 /** = user
                 <!--/act/editor/** = user-->
                 <!--/ReportServer/** = user-->
