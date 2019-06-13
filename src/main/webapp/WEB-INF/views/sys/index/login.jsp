@@ -8,7 +8,7 @@
 </head>
 <div class="login">
     <h1>Login</h1>
-    <form method="post" action="/login">
+    <form method="post" action="">
         <input type="text" name="username" placeholder="用户名" required="required"/>
         <input type="password" name="password" placeholder="密码" required="required"/>
         <button type="submit" class="btn btn-primary btn-block btn-large">登录</button>

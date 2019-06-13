@@ -15,7 +15,7 @@
                 <!--/cas = cas-->
                 /login = authc
                 /logout = logout
-                <!--/index = anon-->
+                /index = user
                 /** = user
                 <!--/act/editor/** = user-->
                 <!--/ReportServer/** = user-->
@@ -38,7 +38,7 @@
             <map>
                 <!--<entry key="cas" value-ref="casFilter"/>-->
                 <!-- 将自定义 的FormAuthenticationFilter注入shiroFilter中-->
-                <entry key="sysUser" value-ref="sysUserFilter"/>
+                <!--<entry key="sysUser" value-ref="sysUserFilter"/>-->
                 <entry key="authc" value-ref="formAuthenticationFilter"/>
             </map>
         </property>
@@ -49,7 +49,7 @@
         </property>
     </bean>
 
-    <bean id="sysUserFilter" class="com.huzhframework.ssmdemo.sys.shiro.filter.SysUserFilter"/>
+    <!--<bean id="sysUserFilter" class="com.huzhframework.ssmdemo.sys.shiro.filter.SysUserFilter"/>-->
 
 
     <!-- CAS认证过滤器 -->
@@ -78,7 +78,7 @@
     <bean id="credentialsMatcher"
           class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
         <property name="hashAlgorithmName" value="md5"/>
-        <property name="hashIterations" value="1"/>
+        <property name="hashIterations" value="2"/>
     </bean>
 
     <!-- 缓存管理器 -->
