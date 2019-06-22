@@ -1,6 +1,7 @@
 package com.huzhframework.ssmdemo.sys.shiro.filter;
 
-import com.huzhframework.ssmdemo.dao.UserMapper;
+import com.huzhframework.ssmdemo.dao.UserMapperImpl;
+import com.huzhframework.ssmdemo.sys.shiro.Constants;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.web.filter.PathMatchingFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,13 @@ import javax.servlet.ServletResponse;
 public class SysUserFilter extends PathMatchingFilter {
 
     @Autowired
-    private UserMapper userService;
+    private UserMapperImpl userService;
 
     @Override
     protected boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
 
-        String username = (String)SecurityUtils.getSubject().getPrincipal();
-        request.setAttribute("user", userService.selectByUsername(username));
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
+        request.setAttribute(Constants.CURRENT_USER, userService.selectByUsername(username));
         return true;
     }
 }

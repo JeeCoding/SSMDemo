@@ -113,7 +113,7 @@
            depends-on="lifecycleBeanPostProcessor">
          <property name="proxyTargetClass" value="true"/>
      </bean>
-     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+     <bean class="org.springframework.controller.servlet.handler.SimpleMappingExceptionResolver">
          <property name="exceptionMappings">
              <props>
                  <prop key="org.apache.shiro.authz.UnauthorizedException">error/403</prop>
@@ -132,5 +132,15 @@
           class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver">
         <property name="contentNegotiationManager" ref="contentNegotiationManager"/>
     </bean>
+
+    <mvc:annotation-driven>
+        <mvc:argument-resolvers>
+            <bean class="com.huzhframework.ssmdemo.sys.bind.method.CurrentUserMethodArgumentResolver"/>
+        </mvc:argument-resolvers>
+    </mvc:annotation-driven>
+
+    <bean class="com.huzhframework.ssmdemo.sys.shiro.exception.DefaultExceptionHandler"/>
+
+    <import resource="spring-mvc-shiro.xml"/>
 
 </beans>

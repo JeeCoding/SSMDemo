@@ -32,7 +32,7 @@
         <mysql.driver.version>5.1.30</mysql.driver.version>
         <oracle.driver.version>10.2.0.4.0</oracle.driver.version>
 
-        <!-- web -->
+        <!-- controller -->
         <jstl.version>1.2</jstl.version>
         <jsp.version>2.2</jsp.version>
         <servlet.version>3.0.1</servlet.version>
@@ -148,7 +148,7 @@
         <!-- AOP end -->
 
         <!-- web相关jar包 -->
-        <!-- web begin -->
+        <!-- controller begin -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
@@ -187,7 +187,7 @@
             <artifactId>standard</artifactId>
             <version>${standard.version}</version>
         </dependency>
-        <!-- web end -->
+        <!-- controller end -->
 
         <!-- 持久化 -->
         <!-- PERSISTENCE begin -->
@@ -266,11 +266,11 @@
             <version>${shiro.version}</version>
         </dependency>
 
-        <!--<dependency>
+        <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-quartz</artifactId>
-            <version>1.2.2</version>
-        </dependency>-->
+            <version>${shiro.version}</version>
+        </dependency>
         <!-- shiro end -->
 
         <!-- 工作流依赖包 -->

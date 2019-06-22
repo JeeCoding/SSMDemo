@@ -1,4 +1,4 @@
-package com.huzhframework.ssmdemo.sys.shiro;
+package com.huzhframework.ssmdemo.sys.shiro.realm;
 
 import com.huzhframework.ssmdemo.dao.UserMapper;
 import com.huzhframework.ssmdemo.entity.User;

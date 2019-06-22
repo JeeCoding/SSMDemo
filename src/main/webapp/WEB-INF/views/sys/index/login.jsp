@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+
 <html>
 <head>
     <title>登录首页</title>
@@ -9,10 +11,11 @@
 <div class="login">
     <h1>Login</h1>
     <form method="post" action="">
-        <input type="text" name="username" placeholder="用户名" required="required"/>
+        <input type="text" name="username" placeholder="用户名" required="required"  value="<shiro:principal/>"/>
         <input type="password" name="password" placeholder="密码" required="required"/>
         <button type="submit" class="btn btn-primary btn-block btn-large">登录</button>
     </form>
+    <div class="error">${error}</div>
 </div>
 </body>
 </html>
