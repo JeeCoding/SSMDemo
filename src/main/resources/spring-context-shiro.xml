@@ -10,9 +10,10 @@
         <constructor-arg>
             <value>
                 /static/** = anon
+                /favicon.ico = anon
                 <!--/userfiles/** = anon-->
                 <!--/casFailure.jsp = anon-->
-                <!--/cas = cas-->
+                <!--hashIterations/cas = cas-->
                 /login = authc
                 /logout = logout
                 /index = user

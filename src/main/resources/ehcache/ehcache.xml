@@ -21,6 +21,15 @@
             diskPersistent="false"
             diskExpiryThreadIntervalSeconds="120"/>
 
+    <cache name="passwordRetryCache"
+           maxEntriesLocalHeap="2000"
+           eternal="false"
+           timeToIdleSeconds="1800"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"
+           statistics="true">
+    </cache>
+
     <!--  自定义缓存策略-学生信息缓存容器对应策略-->
     <cache name="studentCache"
            maxElementsInMemory="1000"
