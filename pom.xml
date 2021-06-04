@@ -73,7 +73,7 @@
         <protostuff.version>1.4.4</protostuff.version>
 
         <!-- httpclientcraw -->
-        <httpclient.version>4.5.2</httpclient.version>
+        <httpclient.version>4.5.13</httpclient.version>
     </properties>
 
     <dependencies>
